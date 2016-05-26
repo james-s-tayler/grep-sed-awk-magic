@@ -13,4 +13,14 @@ grep magic
 
 **Example**:
 `find . -name "*.java" | xargs grep -l hack[y]*`
+
 Lists all `java` files under the current directory that contain the words hack or hacky.
+
+## count global number of matches for a given regex with grep
+
+`find . -name "${target_filetype}" | grep -o "${regex}" | wc -l`
+
+**Example**:
+`find . -name "*.java" | xargs grep -o "()" | wc -l`
+
+Count the total number of methods in your source code
