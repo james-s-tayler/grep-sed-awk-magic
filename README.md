@@ -30,16 +30,16 @@ Count the total number of methods in your source code
 **Example**:
 `echo "one two three four" | grep -o . | grep -n " " | sed 's/://'`
 
+This works because `grep -o .` is matching 'only' 'any character' and returning all matches on a new line.
+We then use `grep -n ${character_to_search_for}` to output the line number of lines that match the character we are searching for.
+
 ## print the last argument with awk
 `awk '{print $NF}'`
 
 **Example**:
 `find . -name "*.java" | awk -F/ '{print $NF}'`
 
-Lists just the filenames without paths of all java classes
-
-This works because `grep -o .` is matching 'only' 'any character' and returning all matches on a new line.
-We then use `grep -n ${character_to_search_for}` to output the line number of lines that match the character we are searching for.
+Lists just the filenames without paths of all java classes. Find will return a list of the full path to each java file and `-F/` tells `awk` to split the string by `/` and then print the last argument in the resulting array.
 
 ## match a pattern spanning multiple lines in `sed`
 `sed ':a;N;$!ba;s/${find_this}/${replace_with_this}/'` 
