@@ -39,6 +39,7 @@ We then use `grep -n ${character_to_search_for}` to output the line number of li
 
 **Example**:
 Assume we have the following `java` class
+
         public class Yolo
         {
             private int x;
@@ -60,6 +61,7 @@ Assume we have the following `java` class
 if we issue the command `cat Yolo.java | awk '/public Yolo\(\)/,/^$/'`
 it will output just the text starting from the constructors method signature
 to the next empty line it finds, thus printing only the constructor.
+        
         public Yolo() {
             // initialise instance variables
             x = 0;
