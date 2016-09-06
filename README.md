@@ -79,3 +79,8 @@ Lists just the filenames without paths of all java classes. Find will return a l
 `sed ':a;N;$!ba;s/${find_this}/${replace_with_this}/'` 
 
 This loads the entire text into the pattern space so the entire input can be matched on instead of just line by line
+
+## remove duplicate lines from a file without sorting it
+`cat file.txt | awk '!x[$0]++'`
+
+No idea how this one works but it's twice as fast as `sort | uniq`
