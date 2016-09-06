@@ -33,6 +33,38 @@ Count the total number of methods in your source code
 This works because `grep -o .` is matching 'only' 'any character' and returning all matches on a new line.
 We then use `grep -n ${character_to_search_for}` to output the line number of lines that match the character we are searching for.
 
+
+## Display an entire block of text beginning with a given pattern
+`awk ‘/start_pattern/,/stop_pattern/’ file.txt`
+
+**Example**:
+Assume we have the following `java` class
+        public class Yolo
+        {
+            private int x;
+
+            /**
+            * Constructor for objects of class Yolo
+            */
+            public Yolo() {
+                // initialise instance variables
+                x = 0;
+            }
+
+            public int sampleMethod(int y) {
+                // put your code here
+                return x + y;
+            }
+        }
+
+if we issue the command `cat Yolo.java | awk '/public Yolo\(\)/,/^$/'`
+it will output just the text starting from the constructors method signature
+to the next empty line it finds, thus printing only the constructor.
+        public Yolo() {
+            // initialise instance variables
+            x = 0;
+        }
+
 ## print the last argument with awk
 `awk '{print $NF}'`
 
