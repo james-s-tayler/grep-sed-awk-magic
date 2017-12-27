@@ -76,12 +76,10 @@ to the next empty line it finds, thus printing only the constructor.
 Lists just the filenames without paths of all java classes. Find will return a list of the full path to each java file and `-F/` tells `awk` to split the string by `/` and then print the last argument in the resulting array.
 
 ## print all columns from the nth to the last with awk
-awk '{$1=""; print $0}' somefile
-
+`awk '{$1=""; print $0}' somefile`
 will print all but very first column.
 
-awk '{$1=$2=""; print $0}' somefile
-
+`awk '{$1=$2=""; print $0}' somefile`
 will print all but two first columns
 
 ## match a pattern spanning multiple lines in `sed`
