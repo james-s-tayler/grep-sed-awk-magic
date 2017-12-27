@@ -77,9 +77,11 @@ Lists just the filenames without paths of all java classes. Find will return a l
 
 ## print all columns from the nth to the last with awk
 `awk '{$1=""; print $0}' somefile`
+
 will print all but very first column.
 
 `awk '{$1=$2=""; print $0}' somefile`
+
 will print all but two first columns
 
 ## match a pattern spanning multiple lines in `sed`
