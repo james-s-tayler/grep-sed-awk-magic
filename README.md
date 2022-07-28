@@ -34,6 +34,19 @@ This works because `grep -o .` is matching 'only' 'any character' and returning 
 We then use `grep -n ${character_to_search_for}` to output the line number of lines that match the character we are searching for.
 
 
+## determine if ALL lines match a given pattern with grep
+`! echo ${string} | grep -v ${pattern_to_search_for}`
+
+**Example: Assert all git commit messages start with a JIRA reference**:
+
+`! git log $(git branch --show-current) --not main --pretty=%B --no-merges | grep -v ^$ | grep -v "^\[[A-Z]*-[0-9]*\].*$"`
+
+First, get all commit messages in this branch that are not in 'main' and exclude any merge-commits then remove blank lines.
+This gives us a nice, clean list of commit messages to work with.
+Normally grep will exit with 0 if ANY matches are found and 1 if no matches are found.
+The problem is we need to assert that ALL commit messages match.
+We can do this by asserting that the list of commit messages that don't start with a JIRA reference is empty. We can do this by inverting the return value of the entire pipeline with ! at the beginning. Then, we simply output all lines that DONT start with a JIRA reference.
+
 ## Display an entire block of text beginning with a given pattern
 `awk ‘/start_pattern/,/stop_pattern/’ file.txt`
 
